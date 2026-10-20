@@ -1,0 +1,100 @@
+import "server-only";
+
+import { z } from "zod";
+
+/**
+ * Variáveis de ambiente validadas. Lidas sob demanda (e não no import) para
+ * que o build e os testes unitários puros não dependam de .env.
+ */
+const schema = z.object({
+  NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+  DATABASE_URL: z.string({ error: "não definida (URL do PostgreSQL)" }).regex(/^postgres(ql)?:\/\//, "DATABASE_URL deve ser uma URL PostgreSQL"),
+  APP_SECRET: z
+    .string({ error: "não definido — gere com: node -e \"console.log(require('crypto').randomBytes(32).toString('base64url'))\"" })
+    .min(43, "APP_SECRET precisa de pelo menos 32 bytes aleatórios (43 caracteres base64url)"),
+  APP_URL: z.url(),
+  /**
+   * "true" só quando o app roda atrás de um proxy confiável (Vercel, Nginx...)
+   * que define X-Forwarded-For/X-Real-IP. Sem proxy, esses cabeçalhos são
+   * forjáveis pelo cliente e não podem ser usados no rate limiting.
+   */
+  /** Google AdSense (opcional). Sem estes dois, nenhum anúncio é exibido. */
+  ADSENSE_CLIENT_ID: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().regex(/^ca-pub-\d{10,20}$/, "ADSENSE_CLIENT_ID deve ser como ca-pub-1234567890123456").optional(),
+  ),
+  ADSENSE_SLOT_ID: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().regex(/^\d{5,20}$/, "ADSENSE_SLOT_ID deve ser numérico").optional(),
+  ),
+  /** Tag do Programa de Associados da Amazon (opcional; ex.: "meusite-20"). */
+  AMAZON_ASSOCIATE_TAG: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().regex(/^[A-Za-z0-9-]{2,64}$/, "AMAZON_ASSOCIATE_TAG deve ser como meusite-20").optional(),
+  ),
+  /** Senha do painel do dono (/painel). Sem ela, o painel não existe (404). */
+  OWNER_PANEL_PASSWORD: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().min(16, "OWNER_PANEL_PASSWORD precisa de pelo menos 16 caracteres").optional(),
+  ),
+  /**
+   * E-mails de aviso (Resend). Sem RESEND_API_KEY, nenhum e-mail é enviado.
+   * EMAIL_FROM: remetente verificado no Resend (padrão: avisos@<domínio do APP_URL>).
+   */
+  RESEND_API_KEY: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().regex(/^re_[A-Za-z0-9_]{8,200}$/, "RESEND_API_KEY deve começar com re_").optional(),
+  ),
+  EMAIL_FROM: z.preprocess((v) => (v === "" ? undefined : v), z.string().max(200).optional()),
+  /** Segredo da rota de lembretes (/api/cron/lembretes), chamada 1x por dia. */
+  CRON_SECRET: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().min(32, "CRON_SECRET precisa de pelo menos 32 caracteres").optional(),
+  ),
+  /** E-mail de contato exibido na Política de Privacidade (LGPD). */
+  CONTACT_EMAIL: z.preprocess((v) => (v === "" ? undefined : v), z.email().optional()),
+  /**
+   * Conexões com o banco POR PROCESSO. Com APP_WORKERS processos, o total é
+   * APP_WORKERS × DATABASE_POOL_MAX — mantenha abaixo do max_connections do
+   * PostgreSQL (padrão 100).
+   */
+  DATABASE_POOL_MAX: z.coerce.number().int().min(2).max(100).default(20),
+  TRUST_PROXY: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((v) => v === "true"),
+});
+
+export type Env = z.infer<typeof schema>;
+
+let cached: Env | undefined;
+
+/**
+ * URL pública: APP_URL; se não definida, a URL de produção que a Vercel
+ * informa (VERCEL_PROJECT_PRODUCTION_URL, ex.: "amgsecret.vercel.app") ou a da
+ * Netlify (URL);
+ * por fim, localhost para desenvolvimento.
+ */
+export function resolveAppUrl(env: NodeJS.ProcessEnv = process.env): string {
+  if (env.APP_URL) return env.APP_URL;
+  if (env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  // Netlify: URL = endereço principal do site (domínio próprio, se houver)
+  if (env.NETLIFY === "true" && env.URL?.startsWith("https://")) return env.URL;
+  return "http://localhost:3000";
+}
+
+export function getEnv(): Env {
+  if (cached) return cached;
+  const parsed = schema.safeParse({ ...process.env, APP_URL: resolveAppUrl() });
+  if (!parsed.success) {
+    const issues = parsed.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ");
+    throw new Error(`Configuração inválida: ${issues}`);
+  }
+  cached = parsed.data;
+  return cached;
+}
+
+/** Só para testes. */
+export function resetEnvCache(): void {
+  cached = undefined;
+}
