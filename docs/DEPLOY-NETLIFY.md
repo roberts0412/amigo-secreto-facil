@@ -50,6 +50,7 @@ que já existem continuam funcionando.
 | `CONTACT_EMAIL` | seu e-mail de contato |
 | `AMAZON_ASSOCIATE_TAG` | sua ID de Associado (ex.: `meusite-20`) — opcional |
 | `ADSENSE_CLIENT_ID` / `ADSENSE_SLOT_ID` | depois da aprovação do AdSense |
+| `GA_MEASUREMENT_ID` | ID do Google Analytics 4 (ex.: `G-ABC123XYZ`) — opcional |
 | `OWNER_PANEL_PASSWORD` | senha do seu painel de números em `/painel` (16+ caracteres) — opcional |
 
 > 🔒 Endereços do banco e `APP_SECRET` são senhas: cole só no painel da
@@ -59,7 +60,7 @@ que já existem continuam funcionando.
 Marque **All scopes** em cada variável (se ficar só em *Functions*, o build não
 as enxerga e falha com "datasource.url is required").
 
-`APP_URL`, `CONTACT_EMAIL`, AdSense e `AMAZON_ASSOCIATE_TAG` (páginas de
+`APP_URL`, `CONTACT_EMAIL`, AdSense, `GA_MEASUREMENT_ID` e `AMAZON_ASSOCIATE_TAG` (páginas de
 ideias de presente) entram no build: ao mudar, faça **Trigger deploy**.
 
 ## Painel do dono

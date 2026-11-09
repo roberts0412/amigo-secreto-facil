@@ -42,6 +42,7 @@ services:
         ADSENSE_SLOT_ID: ${ADSENSE_SLOT_ID:-}
         CONTACT_EMAIL: ${CONTACT_EMAIL:-}
         AMAZON_ASSOCIATE_TAG: ${AMAZON_ASSOCIATE_TAG:-}
+        GA_MEASUREMENT_ID: ${GA_MEASUREMENT_ID:-}
       OWNER_PANEL_PASSWORD: ${OWNER_PANEL_PASSWORD:-}
       RESEND_API_KEY: ${RESEND_API_KEY:-}
       EMAIL_FROM: ${EMAIL_FROM:-}
@@ -55,6 +56,7 @@ services:
       ADSENSE_SLOT_ID: ${ADSENSE_SLOT_ID:-}
       CONTACT_EMAIL: ${CONTACT_EMAIL:-}
       AMAZON_ASSOCIATE_TAG: ${AMAZON_ASSOCIATE_TAG:-}
+      GA_MEASUREMENT_ID: ${GA_MEASUREMENT_ID:-}
       # atrás do Caddy (proxy confiável): usa o IP real do visitante no rate limit
       TRUST_PROXY: "true"
       # processos do site (padrão: 1 por núcleo, até 8)

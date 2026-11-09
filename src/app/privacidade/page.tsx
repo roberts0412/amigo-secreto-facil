@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   const contact = getEnv().CONTACT_EMAIL;
   return (
-    <LegalPage title="Política de Privacidade" updated="02/10/2026">
+    <LegalPage title="Política de Privacidade" updated="09/11/2026">
       <p>
         Esta política explica como tratamos dados pessoais no {SITE_NAME}, de acordo com a Lei Geral de Proteção de
         Dados (LGPD — Lei 13.709/2018). Coletamos apenas o necessário para o sorteio funcionar.
@@ -38,10 +38,11 @@ export default function PrivacyPage() {
         <li>Permitir a lista de desejos, as mensagens anônimas e o mural.</li>
         <li>Proteger o serviço contra abusos e acessos indevidos.</li>
         <li>Exibir anúncios que mantêm o site grátis (somente com as regras de cookies abaixo).</li>
+        <li>Medir, de forma agregada, quantas pessoas visitam as páginas públicas e de onde vieram (somente com o seu consentimento).</li>
       </ul>
       <p>
         A base legal é a execução do serviço que você solicitou (art. 7º, V) e, para anúncios personalizados, o seu
-        consentimento (art. 7º, I).
+        consentimento (art. 7º, I). A medição de audiência também depende do seu consentimento.
       </p>
 
       <h2>Sigilo do sorteio</h2>
@@ -58,6 +59,12 @@ export default function PrivacyPage() {
           &quot;Só essenciais&quot;, os anúncios exibidos não são personalizados. Páginas com informações privadas
           nunca exibem anúncios.
         </li>
+        <li>
+          <strong>Estatísticas</strong> (Google Analytics): só são carregadas se você clicar em &quot;Aceitar&quot;.
+          Medem as visitas às páginas públicas (início, guias, ideias de presente) e de qual site ou rede social a
+          pessoa veio. Páginas do grupo, de acesso, de criação e o painel nunca são medidas, e os endereços enviados
+          não levam códigos de grupo nem links privados.
+        </li>
       </ul>
       <p>
         Você pode mudar de ideia apagando os cookies deste site no seu navegador — o aviso aparecerá de novo.
@@ -66,8 +73,8 @@ export default function PrivacyPage() {
       <h2>Com quem compartilhamos</h2>
       <p>
         Não vendemos dados. Eles ficam no provedor de hospedagem do site. Os e-mails de aviso são enviados por um
-        serviço de envio de e-mails, que recebe só o endereço e o texto do aviso. Quando há anúncios, o Google recebe dados de
-        navegação conforme a sua escolha de cookies e a política do próprio Google.
+        serviço de envio de e-mails, que recebe só o endereço e o texto do aviso. Quando há anúncios ou medição de audiência, o Google
+        recebe dados de navegação conforme a sua escolha de cookies e a política do próprio Google.
       </p>
       <p>
         Alguns links para a Amazon são de afiliado. Eles levam apenas o código do site — nenhum dado seu, do seu grupo

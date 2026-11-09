@@ -4,8 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { type Consent, CONSENT_EVENT, consentCookie, readConsent } from "@/lib/consent";
 
-/** Aviso de cookies discreto, no rodapé. Só é montado quando há anúncios configurados. */
-export function CookieConsent() {
+/** Aviso de cookies discreto, no rodapé. Só é montado quando há anúncios ou Analytics configurados. */
+export function CookieConsent({ ads = true, analytics = false }: { ads?: boolean; analytics?: boolean }) {
+  const optional = [ads && "de anúncios para manter o site grátis", analytics && "de estatísticas para saber como o site é encontrado"]
+    .filter(Boolean)
+    .join(" e ");
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(readConsent(document.cookie) === null), []);
   if (!open) return null;
@@ -21,8 +24,8 @@ export function CookieConsent() {
       className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur">
       <div className="mx-auto flex max-w-md flex-col gap-3">
         <p className="text-sm text-slate-700">
-          Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de anúncios para manter o
-          site grátis. <Link href="/privacidade" className="underline">Saiba mais</Link>.
+          Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies {optional}.{" "}
+          <Link href="/privacidade" className="underline">Saiba mais</Link>.
         </p>
         <div className="flex gap-2">
           <button type="button" onClick={() => choose("essential")}

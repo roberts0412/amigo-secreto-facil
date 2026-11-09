@@ -27,6 +27,15 @@ const schema = z.object({
     (v) => (v === "" ? undefined : v),
     z.string().regex(/^\d{5,20}$/, "ADSENSE_SLOT_ID deve ser numérico").optional(),
   ),
+  /**
+   * Google Analytics 4 (opcional; ex.: "G-ABC123XYZ"). Sem ele, nenhum script de
+   * medição é carregado. Com ele, só carrega com consentimento e nunca nas
+   * páginas privadas (ver src/lib/analytics-paths.ts).
+   */
+  GA_MEASUREMENT_ID: z.preprocess(
+    (v) => (v === "" ? undefined : v),
+    z.string().regex(/^G-[A-Z0-9]{4,20}$/, "GA_MEASUREMENT_ID deve ser como G-ABC123XYZ").optional(),
+  ),
   /** Tag do Programa de Associados da Amazon (opcional; ex.: "meusite-20"). */
   AMAZON_ASSOCIATE_TAG: z.preprocess(
     (v) => (v === "" ? undefined : v),

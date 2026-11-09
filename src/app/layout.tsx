@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { CookieConsent } from "@/components/cookie-consent";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { adMode } from "@/lib/ads";
 import { getEnv } from "@/lib/env";
 import "./globals.css";
@@ -26,12 +27,15 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const gaId = getEnv().GA_MEASUREMENT_ID;
+  const ads = adMode().kind === "adsense";
   return (
     <html lang="pt-BR">
       <body className="min-h-dvh">
         {children}
-        {/* aviso de cookies só existe quando há anúncios de verdade */}
-        {adMode().kind === "adsense" && <CookieConsent />}
+        {gaId && <GoogleAnalytics id={gaId} />}
+        {/* aviso de cookies só existe quando há anúncios ou medição de verdade */}
+        {(ads || gaId) && <CookieConsent ads={ads} analytics={Boolean(gaId)} />}
       </body>
     </html>
   );
