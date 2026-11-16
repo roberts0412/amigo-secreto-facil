@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { type Consent, CONSENT_EVENT, consentCookie, readConsent } from "@/lib/consent";
 
-/** Aviso de cookies discreto, no rodapé. Só é montado quando há anúncios configurados. */
+/** Aviso de cookies discreto, no rodapé (medição de audiência e anúncios). */
 export function CookieConsent() {
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(readConsent(document.cookie) === null), []);
@@ -21,8 +21,8 @@ export function CookieConsent() {
       className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 p-4 shadow-lg backdrop-blur">
       <div className="mx-auto flex max-w-md flex-col gap-3">
         <p className="text-sm text-slate-700">
-          Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de anúncios para manter o
-          site grátis. <Link href="/privacidade" className="underline">Saiba mais</Link>.
+          Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de medição de audiência
+          e de anúncios para melhorar e manter o site grátis. <Link href="/privacidade" className="underline">Saiba mais</Link>.
         </p>
         <div className="flex gap-2">
           <button type="button" onClick={() => choose("essential")}
