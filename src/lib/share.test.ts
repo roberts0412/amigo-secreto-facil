@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { formatEventDate, formatWhen } from "./format";
-import { groupUrl, inviteMessage, whatsappShareUrl } from "./share";
+import { groupUrl, inviteMessage, MESSAGE_FOOTER, whatsappShareUrl } from "./share";
 
 describe("format", () => {
   it("data por extenso sem deslocar o dia por fuso", () => {
@@ -28,12 +28,15 @@ describe("share", () => {
     expect(msg).toContain("📅 24/12 às 20:00");
     expect(msg).toContain("📍 Casa da vó");
     expect(msg.replace(/\s/g, " ")).toContain("R$ 100,00");
-    expect(msg.endsWith("https://amigo.app/grupo/K7PX2M")).toBe(true);
+    expect(msg).toContain("https://amigo.app/grupo/K7PX2M");
+    expect(msg.endsWith(MESSAGE_FOOTER)).toBe(true);
   });
 
   it("mensagem mínima, sem linhas vazias sobrando", () => {
     const msg = inviteMessage({ name: "G", eventDate: null, eventTime: null, location: null, giftValueCents: null }, "u");
-    expect(msg).toBe("🎁 Você foi convidado(a) para o amigo secreto *G*!\n\nEntre pelo link e confirme sua participação:\nu");
+    expect(msg).toBe(
+      `🎁 Você foi convidado(a) para o amigo secreto *G*!\n\nEntre pelo link e confirme sua participação:\nu\n\n${MESSAGE_FOOTER}`,
+    );
   });
 
   it("URL do WhatsApp codifica o texto", () => {
@@ -62,7 +65,8 @@ describe("mensagens do organizador", () => {
     const { drawDoneMessage } = await import("./share");
     const msg = drawDoneMessage("Natal", "https://x/grupo/ABC");
     expect(msg).toContain("*Natal*");
-    expect(msg.endsWith("https://x/grupo/ABC")).toBe(true);
+    expect(msg).toContain("https://x/grupo/ABC");
+    expect(msg.endsWith(MESSAGE_FOOTER)).toBe(true);
   });
 });
 
