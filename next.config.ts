@@ -41,13 +41,17 @@ const isHttps = appUrl.startsWith("https://");
 const GOOGLE_ADS =
   "https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.googleadservices.com https://*.gstatic.com https://*.adtrafficquality.google";
 
+// Google Analytics (medição de audiência, com consentimento)
+const GOOGLE_ANALYTICS =
+  "https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com";
+
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${GOOGLE_ADS}`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} ${GOOGLE_ADS} ${GOOGLE_ANALYTICS}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  `connect-src 'self' ${GOOGLE_ADS}`,
+  `connect-src 'self' ${GOOGLE_ADS} ${GOOGLE_ANALYTICS}`,
   `frame-src ${GOOGLE_ADS}`,
   "object-src 'none'",
   "base-uri 'self'",
