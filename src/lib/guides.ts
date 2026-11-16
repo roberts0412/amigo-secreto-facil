@@ -1,3 +1,5 @@
+import { EXTRA_GUIDES } from "./guides-extra";
+
 /**
  * Guias (artigos) do site: conteúdo editorial original para quem está
  * organizando a brincadeira. Cada guia responde uma dúvida real, com texto
@@ -34,6 +36,7 @@ export const GUIDES_HUB = {
 };
 
 export const GUIDES: readonly Guide[] = [
+  ...EXTRA_GUIDES,
   {
     slug: "como-organizar-amigo-secreto",
     title: "Como organizar amigo secreto: passo a passo completo",
