@@ -84,6 +84,20 @@ export default async function MyAreaPage({ params, searchParams }: Props) {
 
       {result.state === "READY" && (
         <Card>
+          <CardTitle>🎄 Vai ter outro amigo secreto?</CardTitle>
+          <p className="mb-3 text-sm text-slate-700">
+            Da firma, dos amigos, da faculdade... Monte o seu grupo grátis em 1 minuto. Ninguém tira o próprio nome e
+            nem o organizador vê os pares.
+          </p>
+          {/* <a> comum (não <Link>): a página de criar abre do zero e a medição registra de onde a pessoa veio */}
+          <a href="/criar?utm_source=grupo&utm_medium=participante&utm_campaign=crie-o-seu" className={btn.secondary}>
+            Criar meu amigo secreto
+          </a>
+        </Card>
+      )}
+
+      {result.state === "READY" && (
+        <Card>
           <CardTitle>💌 Mensagens de quem te tirou</CardTitle>
           <div className="flex flex-col gap-4">
             <Conversation messages={fromSanta} today={today} otherLabel={`Seu ${term}`}
