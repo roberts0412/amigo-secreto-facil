@@ -1,5 +1,9 @@
 import { formatCents, formatShortDate } from "@/lib/format";
 import { type GameLike, gameTerm } from "@/lib/game-kinds";
+import { SITE_NAME } from "@/lib/brand";
+
+/** Assinatura discreta no fim das mensagens: o nome do site viaja junto quando a mensagem é repassada. */
+export const MESSAGE_FOOTER = `_Sorteio grátis pelo ${SITE_NAME}_ ✨`;
 
 export interface ShareableGroup extends GameLike {
   name: string;
@@ -21,7 +25,7 @@ export function inviteMessage(group: ShareableGroup, url: string): string {
   if (group.location) lines.push(`📍 ${group.location}`);
   if (group.giftValueCents !== null) lines.push(`💰 Presente de até ${formatCents(group.giftValueCents)}`);
   if (lines.length > 2) lines.push("");
-  lines.push("Entre pelo link e confirme sua participação:", url);
+  lines.push("Entre pelo link e confirme sua participação:", url, "", MESSAGE_FOOTER);
   return lines.join("\n");
 }
 
@@ -53,6 +57,8 @@ export function drawDoneMessage(groupName: string, url: string, game?: GameLike)
     "",
     "Abra o link, entre na sua área e toque em \"Revelar\" para ver quem você tirou. 🤫",
     url,
+    "",
+    MESSAGE_FOOTER,
   ].join("\n");
 }
 
