@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { CookieConsent } from "@/components/cookie-consent";
-import { adMode } from "@/lib/ads";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { getEnv } from "@/lib/env";
 import "./globals.css";
 import { SITE_NAME } from "@/lib/brand";
@@ -30,8 +30,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR">
       <body className="min-h-dvh">
         {children}
-        {/* aviso de cookies só existe quando há anúncios de verdade */}
-        {adMode().kind === "adsense" && <CookieConsent />}
+        {/* medição de audiência: cookies só depois do "Aceitar" no aviso abaixo */}
+        <GoogleAnalytics />
+        <CookieConsent />
       </body>
     </html>
   );
