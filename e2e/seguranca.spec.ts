@@ -47,9 +47,12 @@ test("saúde: /api/health responde com o banco", async ({ page }) => {
   expect(await res.json()).toEqual({ ok: true });
 });
 
-test("privacidade e termos acessíveis pelo rodapé; sem AdSense não há aviso de cookies", async ({ page }) => {
+test("privacidade e termos acessíveis pelo rodapé; aviso de cookies some depois da escolha", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("dialog", { name: "Aviso de cookies" })).toHaveCount(0);
+  const aviso = page.getByRole("dialog", { name: "Aviso de cookies" });
+  await expect(aviso).toBeVisible();
+  await aviso.getByRole("button", { name: "Só essenciais" }).click();
+  await expect(aviso).toHaveCount(0);
   await page.getByRole("link", { name: "Privacidade" }).click();
   await expect(page.getByRole("heading", { name: "Política de Privacidade" })).toBeVisible();
   await expect(page.getByText(/LGPD/).first()).toBeVisible();
