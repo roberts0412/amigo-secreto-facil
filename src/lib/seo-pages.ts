@@ -176,9 +176,9 @@ export const SEO_PAGES: readonly SeoPage[] = [
   {
     slug: "amigo-oculto-online",
     keyword: "amigo oculto online",
-    title: "Amigo Oculto Online: sorteio grátis pelo WhatsApp",
+    title: "Amigo Oculto Online Grátis: sorteio no celular em 1 minuto",
     description:
-      "Organize seu amigo oculto online e grátis: convite pelo WhatsApp, sorteio sem erro e cada pessoa vê só quem tirou. Sem cadastro e sem papelzinho.",
+      "Sorteie o amigo oculto online e grátis em 1 minuto: convite no WhatsApp, ninguém tira o próprio nome e nem o organizador vê os pares. Sem papelzinho.",
     h1: "Amigo oculto online, grátis e pelo celular",
     intro:
       "Amigo oculto, amigo secreto: o nome muda de região para região, a brincadeira é a mesma. Aqui o grupo é criado com o nome de amigo oculto, e o sorteio acontece pelo celular, sem precisar juntar todo mundo.",
@@ -248,9 +248,9 @@ export const SEO_PAGES: readonly SeoPage[] = [
   {
     slug: "amigo-chocolate",
     keyword: "amigo chocolate",
-    title: "Amigo Chocolate: sorteio online grátis pelo WhatsApp",
+    title: "Amigo Chocolate: sorteio grátis no celular em 1 minuto",
     description:
-      "Faça o sorteio do amigo chocolate online: convite pelo WhatsApp, lista de chocolates preferidos e mensagens anônimas. Grátis e sem cadastro.",
+      "Sorteie o amigo chocolate da firma ou da escola em 1 minuto: convite no WhatsApp, lista de chocolates preferidos e mensagens anônimas. Grátis.",
     h1: "Amigo chocolate com sorteio pelo celular",
     intro:
       "O amigo chocolate é o jeito mais doce de brincar: em vez de presentes, a troca é de chocolates. É comum na Páscoa, na escola e no trabalho, e o sorteio pode ser feito pelo celular em um minuto.",
