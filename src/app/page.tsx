@@ -6,7 +6,7 @@ import { GIFT_HUB } from "@/lib/gift-ideas";
 import { btn, Card, PageShell } from "@/components/ui";
 import { getEnv } from "@/lib/env";
 import { GUIDES, GUIDES_HUB } from "@/lib/guides";
-import { HOW_IT_WORKS, jsonLdScript, SEO_PAGES } from "@/lib/seo-pages";
+import { HOW_IT_WORKS, INDEXED_SEO_PAGES, jsonLdScript } from "@/lib/seo-pages";
 import { SITE_NAME } from "@/lib/brand";
 import { NAMED_GAME_KINDS, gameTitle } from "@/lib/game-kinds";
 
@@ -119,7 +119,7 @@ export default function HomePage() {
       <nav aria-label="Brincadeiras" className="mt-2">
         <h2 className="mb-2 text-xl font-bold">Escolha a sua brincadeira</h2>
         <ul className="flex flex-wrap gap-2">
-          {SEO_PAGES.map((p) => (
+          {INDEXED_SEO_PAGES.map((p) => (
             <li key={p.slug}>
               <Link href={`/${p.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-white px-3 text-sm ring-1 ring-slate-200 hover:bg-slate-50">
                 {p.h1}
