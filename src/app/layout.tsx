@@ -28,6 +28,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
+      <head>
+        {/* nenhum anúncio é pedido antes da escolha no aviso de cookies (LGPD) */}
+        <script
+          dangerouslySetInnerHTML={{ __html: "(window.adsbygoogle=window.adsbygoogle||[]).pauseAdRequests=1;" }}
+        />
+      </head>
       <body className="min-h-dvh">
         {children}
         {/* medição de audiência: cookies só depois do "Aceitar" no aviso abaixo */}
