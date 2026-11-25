@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ad-slot";
 import { btn, Card, PageShell } from "@/components/ui";
 import { getEnv } from "@/lib/env";
-import { getSeoPage, HOW_IT_WORKS, jsonLdScript, SEO_PAGES } from "@/lib/seo-pages";
+import { getSeoPage, HOW_IT_WORKS, INDEXED_SEO_PAGES, jsonLdScript, SEO_PAGES } from "@/lib/seo-pages";
 import { SITE_NAME } from "@/lib/brand";
 import { GIFT_HUB } from "@/lib/gift-ideas";
 
@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: { absolute: page.title },
     description: page.description,
     alternates: { canonical: `/${page.slug}` },
+    ...(page.noindex ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: page.title,
       description: page.description,
@@ -39,7 +40,7 @@ export default async function SeoPage({ params }: Props) {
   const page = getSeoPage((await params).slug);
   if (!page) notFound();
   const base = getEnv().APP_URL;
-  const others = SEO_PAGES.filter((p) => p.slug !== page.slug);
+  const others = INDEXED_SEO_PAGES.filter((p) => p.slug !== page.slug);
 
   const jsonLd = [
     {
@@ -79,6 +80,7 @@ export default async function SeoPage({ params }: Props) {
           {page.cta ?? "Criar amigo secreto grátis"}
         </Link>
 
+        {!page.hideSteps && (
         <Card>
           <h2 className="mb-3 text-lg font-bold">Como funciona</h2>
           <ol className="grid gap-3">
@@ -94,6 +96,7 @@ export default async function SeoPage({ params }: Props) {
             ))}
           </ol>
         </Card>
+        )}
 
         {page.sections.map((s) => (
           <section key={s.heading} className="flex flex-col gap-2">
