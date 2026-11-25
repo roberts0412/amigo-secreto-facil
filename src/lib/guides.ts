@@ -46,7 +46,7 @@ export const GUIDES: readonly Guide[] = [
     summary: "O roteiro completo para quem ficou com a missão de organizar a brincadeira.",
     intro:
       "Todo grupo tem aquela pessoa que acaba organizando o amigo secreto. Se este ano é você, calma: dá para fazer tudo em poucos passos e sem virar o chato do grupo cobrando todo mundo. Este guia junta o que costuma dar certo (e o que costuma dar errado) em cada etapa.",
-    updated: "2026-10-13",
+    updated: "2026-11-25",
     emoji: "🗓️",
     sections: [
       {
@@ -108,6 +108,32 @@ export const GUIDES: readonly Guide[] = [
           "A revelação é o momento mais esperado. Em vez de simplesmente entregar o presente, cada pessoa pode descrever quem tirou sem dizer o nome, e o grupo tenta adivinhar. Temos um guia só com ideias de brincadeiras para esse momento.",
         ],
       },
+      {
+        heading: "Um cronograma que funciona",
+        paragraphs: [
+          "Se você gosta de ter tudo no papel, este é um roteiro de três semanas que costuma dar certo para grupos de qualquer tamanho. Dá para apertar em dez dias, mas menos que isso começa a gerar presente comprado na correria.",
+        ],
+        bullets: [
+          "Três semanas antes: pergunte no grupo data, valor e quem participa",
+          "Duas semanas e meia antes: mande o link de convite com prazo para confirmar",
+          "Duas semanas antes: feche a lista, cadastre as exceções e faça o sorteio",
+          "Uma semana antes: lembre todo mundo de preencher a lista de desejos",
+          "Dois dias antes: confirme local, horário e quem vai chegar atrasado",
+        ],
+      },
+      {
+        heading: "Quando o grupo é grande",
+        paragraphs: [
+          "A partir de umas 20 pessoas, a revelação um por um pode passar de uma hora. Nesses casos, vale dividir: uma rodada antes do almoço e outra depois, ou separar por mesas. Outra saída é encurtar a descrição de cada pessoa para três pistas, no máximo.",
+          "Em grupos grandes também é comum alguém desistir depois do sorteio. Combine desde o começo o que acontece nesse caso, por exemplo, quem desistir avisa o organizador, que refaz o sorteio se ainda houver tempo, ou alguém se oferece para cobrir o presente.",
+        ],
+      },
+      {
+        heading: "O que fazer quando alguém não confirma",
+        paragraphs: [
+          "Sempre tem quem visualiza o convite e some. Em vez de cobrar no grupo, mande uma mensagem individual curta, lembrando o prazo. Se a pessoa não responder até a data combinada, siga sem ela: esperar uma pessoa atrasa o grupo inteiro e aumenta a chance de outras desistirem.",
+        ],
+      },
     ],
   },
   {
@@ -119,7 +145,7 @@ export const GUIDES: readonly Guide[] = [
     summary: "Valor, prazos, desistências e revelação: as regras que evitam briga no fim do ano.",
     intro:
       "Amigo secreto parece simples até alguém perguntar “mas pode dar dinheiro?” ou “e se eu tirar meu marido?”. A maioria das confusões acontece porque cada pessoa imaginou uma regra diferente. Aqui estão as regras mais comuns e o que vale combinar antes do sorteio.",
-    updated: "2026-10-13",
+    updated: "2026-11-25",
     emoji: "📋",
     sections: [
       {
@@ -173,6 +199,25 @@ export const GUIDES: readonly Guide[] = [
         heading: "Um modelo de mensagem com as regras",
         paragraphs: [
           "Copie e adapte para o grupo do WhatsApp: “Amigo secreto da turma! Troca dia 20/12, às 19h, na casa da Ana. Valor até R$ 50. Quem tirou o par não conta pra ninguém. Casais não se tiram. Coloquem a lista de desejos até dia 10. Quem desistir depois do sorteio compra o presente mesmo assim 😄”.",
+        ],
+      },
+      {
+        heading: "Variações de regra que deixam a troca mais divertida",
+        paragraphs: [
+          "Depois de alguns anos fazendo do mesmo jeito, muitos grupos começam a mudar uma ou outra regra. Algumas variações simples que funcionam bem:",
+        ],
+        bullets: [
+          "Presente com tema: todo mundo dá algo de uma categoria, como livro, planta ou algo feito à mão",
+          "Presente com letra: o presente começa com a inicial do nome de quem vai receber",
+          "Dois presentes: um de verdade e um engraçado, no estilo amigo da onça",
+          "Sem lista de desejos: só vale observar a pessoa e acertar pelo que você sabe dela",
+        ],
+      },
+      {
+        heading: "Quando a regra precisa ser flexível",
+        paragraphs: [
+          "Regra boa é a que cabe no grupo. Se alguém está apertado de dinheiro naquele ano, vale aceitar um presente feito à mão sem fazer disso um assunto. Se uma criança tirou um adulto, um desenho ou uma carta podem valer tanto quanto o presente comprado.",
+          "O que não deve ser flexível é o segredo e o respeito: ninguém conta quem tirou antes da hora, e ninguém faz piada com o presente que recebeu na frente de quem deu.",
         ],
       },
     ],

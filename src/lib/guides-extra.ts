@@ -15,7 +15,7 @@ export const EXTRA_GUIDES: readonly Guide[] = [
     summary: "Convite por link, sorteio sem papelzinho e lembretes sem encher o grupo de mensagens.",
     intro:
       "Hoje quase todo amigo secreto nasce num grupo de WhatsApp: da família, da firma, da turma da faculdade. O problema é que o grupo vira uma confusão de mensagens, ninguém acha a data combinada e o sorteio acaba sendo feito no papelzinho, com alguém tirando o próprio nome. Dá para usar o WhatsApp só para o que ele faz bem, que é avisar todo mundo, e deixar o resto organizado num lugar só.",
-    updated: "2026-11-15",
+    updated: "2026-11-25",
     emoji: "💬",
     sections: [
       {
@@ -56,6 +56,33 @@ export const EXTRA_GUIDES: readonly Guide[] = [
         paragraphs: [
           "Uma semana antes da troca, mande uma única mensagem no grupo lembrando a data, o local, o horário e o valor combinado. No dia anterior, outro lembrete rápido basta. Mais do que isso faz as pessoas silenciarem o grupo e perderem o aviso que importa.",
           "Se o grupo for grande, como o da firma, vale combinar também o que acontece se alguém faltar no dia: a pessoa entrega o presente depois ou deixa com um colega.",
+        ],
+      },
+      {
+        heading: "6. Mensagens prontas para copiar",
+        paragraphs: [
+          "Para a primeira mensagem no grupo: “Bora fazer amigo secreto este ano? Respondam com 👍 quem topa. Sugestão de valor: até R$ 50. Data: sábado, dia 20. Quem não puder nesse dia, avisa até sexta.”",
+          "Para o convite: “Pronto, o grupo está criado! Entra por este link, coloca o seu nome e confirma. O sorteio vai ser na quarta, então quem não entrar até lá fica de fora.”",
+          "Para o lembrete: “Faltam cinco dias! Quem ainda não fez a lista de desejos, dá tempo. Lembrando: até R$ 50 e a troca é no sábado, às 15h.”",
+        ],
+      },
+      {
+        heading: "7. E quem não está no grupo do WhatsApp?",
+        paragraphs: [
+          "Sempre tem um tio que não usa o WhatsApp direito ou uma prima que saiu do grupo. O link de convite funciona em qualquer lugar: dá para mandar por SMS, por e-mail ou abrir no celular de outra pessoa e cadastrar o nome com ela.",
+          "Para quem não usa celular, o organizador pode combinar com alguém próximo que receba o resultado e conte só para essa pessoa, de preferência pessoalmente.",
+        ],
+      },
+      {
+        heading: "8. Erros que bagunçam o grupo",
+        paragraphs: [
+          "Alguns deslizes aparecem em quase todo grupo e são fáceis de evitar:",
+        ],
+        bullets: [
+          "Mandar o resultado do sorteio no grupo por engano (por isso cada um deve ver só o seu)",
+          "Discutir o valor por dias em vez de propor um número e pedir objeções",
+          "Mudar a data depois do sorteio sem avisar todo mundo",
+          "Usar o grupo da família inteira quando só parte dela participa: às vezes vale criar um grupo só para a brincadeira",
         ],
       },
     ],

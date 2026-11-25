@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getSeoPage, jsonLdScript, SEO_PAGES } from "./seo-pages";
+import { getSeoPage, INDEXED_SEO_PAGES, jsonLdScript, SEO_PAGES } from "./seo-pages";
 
 const norm = (s: string) => s.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 
@@ -30,6 +30,10 @@ describe("páginas de SEO", () => {
     expect(new Set(SEO_PAGES.map((p) => p.title)).size).toBe(SEO_PAGES.length);
     expect(new Set(SEO_PAGES.map((p) => p.description)).size).toBe(SEO_PAGES.length);
     expect(new Set(SEO_PAGES.map((p) => p.h1)).size).toBe(SEO_PAGES.length);
+  });
+
+  it("páginas repetidas ficam fora do índice", () => {
+    expect(INDEXED_SEO_PAGES.map((p) => p.slug).sort()).toEqual(["amigo-chocolate", "amigo-da-onca", "amigo-secreto-online"]);
   });
 
   it("getSeoPage", () => {
