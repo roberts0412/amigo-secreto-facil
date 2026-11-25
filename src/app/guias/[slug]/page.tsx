@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/ad-slot";
-import { btn, Card, PageShell } from "@/components/ui";
+import { PageShell } from "@/components/ui";
 import { getEnv } from "@/lib/env";
 import { formatGuideDate, getGuide, GUIDES, GUIDES_HUB } from "@/lib/guides";
 import { jsonLdScript } from "@/lib/seo-pages";
@@ -54,7 +54,7 @@ export default async function GuidePage({ params }: Props) {
       datePublished: guide.updated,
       dateModified: guide.updated,
       mainEntityOfPage: new URL(path, base).toString(),
-      author: { "@type": "Organization", name: SITE_NAME, url: new URL("/sobre", base).toString() },
+      author: { "@type": "Person", name: "Robert Santana", url: new URL("/sobre", base).toString() },
       publisher: { "@type": "Organization", name: SITE_NAME, url: base },
     },
     {
@@ -83,7 +83,7 @@ export default async function GuidePage({ params }: Props) {
           <h1 className="mt-2 text-3xl font-extrabold tracking-tight">{guide.h1}</h1>
           <p className="mt-1 text-sm text-slate-500">
             Atualizado em <time dateTime={guide.updated}>{formatGuideDate(guide.updated)}</time> · por{" "}
-            <Link href="/sobre" className="underline">{SITE_NAME}</Link>
+            <Link href="/sobre" className="underline">Robert Santana</Link>, criador do {SITE_NAME}
           </p>
           <p className="mt-3 text-lg text-slate-700">{guide.intro}</p>
         </header>
@@ -102,15 +102,6 @@ export default async function GuidePage({ params }: Props) {
           </section>
         ))}
 
-        <Card highlight>
-          <h2 className="text-lg font-bold">Organize o seu em um minuto</h2>
-          <p className="mt-1 text-slate-700">
-            Crie o grupo, mande o link no WhatsApp e faça o sorteio. Ninguém tira a si mesmo e nem o organizador vê os
-            pares.
-          </p>
-          <Link href="/criar" className={`${btn.primary} mt-3`}>Criar amigo secreto grátis</Link>
-        </Card>
-
         <nav aria-label="Leia também" className="mt-2">
           <h2 className="mb-2 text-lg font-bold">Leia também</h2>
           <ul className="grid gap-2">
@@ -121,6 +112,11 @@ export default async function GuidePage({ params }: Props) {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/criar" className="flex items-center gap-2 rounded-xl bg-white px-3 py-3 text-sm ring-1 ring-slate-200 hover:bg-slate-50">
+                <span aria-hidden>✨</span> Criar um amigo secreto grátis
+              </Link>
+            </li>
             <li>
               <Link href={GIFT_HUB.path} className="flex items-center gap-2 rounded-xl bg-white px-3 py-3 text-sm ring-1 ring-slate-200 hover:bg-slate-50">
                 <span aria-hidden>🎁</span> Ideias de presente por valor
